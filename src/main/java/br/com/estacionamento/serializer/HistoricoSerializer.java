@@ -19,7 +19,6 @@ public class HistoricoSerializer extends JsonSerializer<Historico> {
 		jsonGenerator.writeBooleanField("pago", value.getPago());
 		jsonGenerator.writeBooleanField("saiu", value.getSaiu());
 		jsonGenerator.writeStringField("tempoPermanencia", value.getTempoPermanencia());
-		jsonGenerator.writeStringField("numeroReserva", value.getNumeroReserva().toString());
 		
 		jsonGenerator.writeEndObject();
 	}
