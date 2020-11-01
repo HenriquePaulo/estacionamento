@@ -4,8 +4,8 @@ Projeto Java com Spring Boot e Maven com objetivo de disponibilizar uma API REST
 
 ## Prerequisites
 
-	Java 8
-	Postgresql
+	Java 11
+	Postgresql 11
 
 ## Built With 
 
