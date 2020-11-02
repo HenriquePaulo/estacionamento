@@ -30,9 +30,7 @@ public class EstacionamentoService {
 	@Transactional(rollbackOn = Exception.class)
 	public Historico entrada(Veiculo veiculo) throws ValidateException, Exception {
 		
-		if ( veiculo == null || !ValidateUtils.placaValida(veiculo.placa)) {
-			throw new ValidateException("insira um Placa válida");
-		}
+		validaPlaca(veiculo);
 		
 		veiculo.placa = veiculo.placa.toUpperCase();
 		List<Historico> historicoBD = historicoRepository.findByPlaca(veiculo.placa);
@@ -61,6 +59,12 @@ public class EstacionamentoService {
 		
 		
 		return historicoRepository.save(historico);		
+	}
+
+	private void validaPlaca(Veiculo veiculo) throws ValidateException {
+		if ( veiculo == null || !ValidateUtils.placaValida(veiculo.placa)) {
+			throw new ValidateException("insira um Placa válida");
+		}
 	}
 
 	@Transactional(rollbackOn = Exception.class)
@@ -104,7 +108,9 @@ public class EstacionamentoService {
 		return historicoRepository.save(historico);
 	}
 
-	public List<Historico> getHistorico(String placa) {
+	public List<Historico> getHistorico(String placa) throws ValidateException {
+		Veiculo veiculo = Veiculo.builder().placa(placa).build();
+		validaPlaca(veiculo);
 		return historicoRepository.findByPlaca(placa.toUpperCase());
 	}
 	

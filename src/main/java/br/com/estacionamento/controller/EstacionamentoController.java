@@ -44,7 +44,7 @@ public class EstacionamentoController {
 	}
 	
 	@GetMapping("/estacionamentos/{placa}")
-	public ResponseEntity<List<Historico>> getHistorico(@PathVariable String placa) {
+	public ResponseEntity<List<Historico>> getHistorico(@PathVariable String placa) throws ValidateException {
 		return ResponseEntity.ok(estacionamentoService.getHistorico(placa));
 	}
 	
